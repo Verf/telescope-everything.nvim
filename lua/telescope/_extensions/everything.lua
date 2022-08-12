@@ -43,7 +43,6 @@ local run = function(opts)
 		table.insert(find_command, "-max-results")
 		table.insert(find_command, tostring(opts.max_results))
 	end
-	_G.print_tb(find_command)
 	pickers.new(opts, {
 		prompt_title = "Everything",
 		finder = finders.new_job(function(prompt)
