@@ -34,7 +34,8 @@ require('telescope').load_extension 'everything'
 
 ## Config
 
-You can check [Everything Command Line Interface](https://www.voidtools.com/support/everything/command_line_interface/) for more information:
+You can check [Everything Command Line Interface](https://www.voidtools.com/support/everything/command_line_interface/) for more information,
+the default config is:
 
 ```lua
 require('telescope').setup {
@@ -44,12 +45,10 @@ require('telescope').setup {
             whole_word = false,
             match_path = false,
             sort = false,
+            regex = true,
             offset = 0,
             max_results = 100,
         }
     },
 }
 ```
-
-## Roadmap
-[ ] Support regex
