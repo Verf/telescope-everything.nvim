@@ -4,7 +4,8 @@ Search things by es.exe(Everything Command Line Interface) for windows user.
 
 ## Requirement
 
-[Everything](https://www.voidtools.com/) and [Everything Command Line Interface](https://www.voidtools.com/support/everything/command_line_interface/) in PATH.
+Install [Everything](https://www.voidtools.com/), and put [Everything Command Line Interface](https://www.voidtools.com/support/everything/command_line_interface/)
+in PATH (or setup `es_path` to the path of es).
 
 ## Installation
 
@@ -41,6 +42,7 @@ the default config is:
 require('telescope').setup {
     extensions = {
         everything = {
+            es_path = "es",
             case_sensitity = false,
             whole_word = false,
             match_path = false,
