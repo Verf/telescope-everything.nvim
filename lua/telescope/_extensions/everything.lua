@@ -23,6 +23,19 @@ local function es_setup(ext_config)
     end
 end
 
+local function split_prompt(prompt)
+    local args = {}
+    local remaining = prompt
+    for quoted in prompt:gmatch('"[^"]*"') do
+        table.insert(args, quoted:sub(2, -2)) -- Add without quotes
+        remaining = remaining:gsub('"[^"]*"', '', 1) -- Remove first occurrence
+    end
+    for word in remaining:gmatch('%S+') do
+        table.insert(args, word)
+    end
+    return args
+end
+
 local run = function(opts)
     opts = vim.tbl_deep_extend("force", es_config, opts or {})
     local command_params = {}
@@ -57,7 +70,8 @@ local run = function(opts)
                 if not prompt or prompt == "" then
                     return nil
                 end
-                return flatten({ opts.es_path, command_params, prompt })
+                local prompt_parts = split_prompt(prompt)
+                return flatten({ opts.es_path, command_params, prompt_parts })
             end, opts.entry_maker or make_entry.gen_from_file(opts)),
             previewer = conf.file_previewer(opts),
             sorter = sorters.highlighter_only(opts),
